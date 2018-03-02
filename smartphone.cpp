@@ -11,6 +11,7 @@ struct smart
 };
 smart cat[lim];
 int i,n = 0;
+
 void add()
 {
  system("clear");
@@ -27,6 +28,7 @@ void add()
   scanf("%f", &cat[n].dig);
  }
 }
+
 void odin(int a)
 {
  printf("Производитель: %s\n", cat[n].cmp);
@@ -61,6 +63,7 @@ void find()
   printf("Не найдено");
  }
 }
+
 int menu()
 {
  int d;
@@ -72,6 +75,7 @@ int menu()
  scanf("%d", &d);
  return d;
 }
+
 int main()
 {
  n = 0;
@@ -79,22 +83,22 @@ int main()
  {
   switch(menu())
   {
-  case 1:
-         add();
-         break;
-  case 2:
-         allin();
-         printf("Нажмите любую клавишу...\n");
-         system("pause");
-         break;
-  case 3:
-         find();
-         printf("Нажмите любую клавишу...\n");
-         system("pause");
-         break;
-  case 4:
-         return 0;
- }
+   case 1:
+          add();
+          break;
+   case 2:
+          allin();
+          printf("Нажмите Ctrl+C...\n");
+          system("pause");
+          break;
+   case 3:
+          find();
+          printf("Нажмите Ctrl+C...\n");
+          system("pause");
+          break;
+   case 4:
+          return 0;
+  }
  }
  return 0;
 }

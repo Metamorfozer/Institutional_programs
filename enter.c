@@ -18,18 +18,18 @@ int main()
   printf("Введите строку: ");
   fgets(s, 999, stdin);
   if (!strcmp(s, "stop\n"))
-   break;
+  break;
   fprintf(f, "%s", s);
-  }
-  fclose(f);
-  f = fopen("cpoem.txt", "rt");
-  char *E = NULL;
-  while (!feof(f))
-  {
-   E = fgets(s, 999, f);
-   if (E!=NULL)
-   printf("%s", s);;
-  }
-  fclose(f);
-  return 0;
+ }
+ fclose(f);
+ f = fopen("cpoem.txt", "rt");
+ char *E = NULL;
+ while (!feof(f))
+ {
+  E = fgets(s, 999, f);
+  if (E!=NULL)
+  printf("%s", s);;
+ }
+ fclose(f);
+ return 0;
 }
