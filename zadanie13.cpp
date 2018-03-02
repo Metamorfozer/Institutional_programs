@@ -7,14 +7,15 @@ using namespace std;
 int i,n = 0;
 char namefile[15];
 const int lim = 10;
-struct pupil
+
+struct people
 {
- char magazine[15];
- char tovar[15];
- float cena;
+ char store[15];
+ char goods[15];
+ float price;
 };
 
-pupil cat[lim];
+people power[lim];
 void save()
 {
  system("clear");
@@ -25,7 +26,7 @@ void save()
  f = fopen(namefile, "wb");
  for (i=0;i<n;i++)
  {
-  fwrite(&cat[n], sizeof(pupil), 1, f);
+  fwrite(&power[n], sizeof(people), 1, f);
  }
  fclose(f);
 }
@@ -33,23 +34,23 @@ void save()
 void odin(int n)
 {
  n++;
- cout << "Магазин,  номер "     << n               << endl
-      << "Название магазина: " << cat[n].magazine << endl
-      << "Название товара: "   << cat[n].tovar    << endl
-      << "Стоимость: "         << cat[n].cena << " руб." << endl;
+ cout << "Магазин,  номер "    << n               << endl
+      << "Название магазина: " << power[n].store << endl
+      << "Название товара: "   << power[n].goods    << endl
+      << "Стоимость: "         << power[n].price << " руб." << endl;
 }
 
 void find()
 {
  system("clear");
- char namemagazine[15];
+ char namestore[15];
  cout << "Введите название магазина: ";
- cin  >> namemagazine;
+ cin  >> namestore;
  n = 1;
  for (i = 0; i<lim; i++)
  {
   n++;
-  if (strcmp(namemagazine, cat[n].magazine)==0)
+  if (strcmp(namestore, power[n].store)==0)
   {
    for (i=0;i<n;i++)
    odin(i);
@@ -72,11 +73,11 @@ void add()
   n++;
   cout << "Магазин,  номер "     << n          << endl
        << "Введите название магазина: ";
-  cin  >> cat[n].magazine;
+  cin  >> power[n].store;
   cout << "Введите название товара: ";
-  cin  >> cat[n].tovar;
+  cin  >> power[n].goods;
   cout << "Введите цену: ";
-  cin  >> cat[n].cena;
+  cin  >> power[n].price;
  }
 }
 
@@ -103,20 +104,20 @@ void loading()
  fseek(f, 0, SEEK_SET);
  int g = 1;
  n = n - 1;
- for (i=0;i<z/sizeof(pupil);i++)
+ for (i=0;i<z/sizeof(people);i++)
  {
-  fread(&cat[i], sizeof(pupil), 1, f);
+  fread(&power[i], sizeof(people), 1, f);
   cout << "Магазин, номер"      << g               << endl
-       << "Название магазина: " << cat[n].magazine << endl
-       << "Название товара: "   << cat[n].tovar    << endl
-       << "Цена: "              << cat[n].cena     << endl;
+       << "Название магазина: " << power[n].store << endl
+       << "Название товара: "   << power[n].goods    << endl
+       << "Цена: "              << power[n].price     << endl;
   n++;
   g++;
  }
  fclose(f);
  system("pause");
 }
-
+/*
 void sort()
 {
  int counter = 0;
@@ -124,17 +125,18 @@ void sort()
  int j = 1;
  for (int i = 1; i < n; i++)
  {
-  for ( j = i; j > 0 && cat[n-1].magazine > cat[n].magazine ;j++ )
+  for ( j = i; j > 0 && power[n-1].store > power[n].store ;j++ )
   {
    n++;
    counter++;
-   char tmp[15] = cat[n-1].magazine;
-   cat[n-1].magazine = cat[n].magazine;
-   cat[n].magazine = tmp;
+   char tmp[15] = power[n-1].store;
+   power[n-1].store = power[n].store;
+   power[n].store = tmp;
   }
  }
  cout << counter << endl;
 }
+*/
 
 int menu()
 {
@@ -145,7 +147,7 @@ int menu()
  printf("3 - поиск по названию магазина\n");
  printf("4 - добавить магазин\n");
  printf("5 - показать все магазины\n");
- printf("6 - сортировка магазинов");
+ //printf("6 - сортировка магазинов");
  printf("7 - выход\n");
  printf("Введите цифру: ");
  scanf("%d", &d);
@@ -177,10 +179,10 @@ int main()
           all();
           system("pause");
           break;
-   case 6:
+   /*case 6:
           sort();
           system("pause");
-          break;
+          break;*/
    case 7:
           return 0;
   }

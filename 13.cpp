@@ -6,7 +6,7 @@ using namespace std;
 struct pupil
 {
  char surname[30];
- int grade;
+ int growth;
  float weight;
 };
 
@@ -20,13 +20,13 @@ int main()
  for (i=0;i<3;i++)
  {
   n++;
-  cout << "Ученик, номер " << n << "\n"; 
+  cout << "Ученик, номер " << n << "\n";
   cout << "Введите фамилию: ";
   cin >> a.surname;
   cout << "Введите вес: ";
-  cin >> a.grade;
-  cout << "Введите рост: ";
   cin >> a.weight;
+  cout << "Введите рост: ";
+  cin >> a.growth;
   fwrite(&a, sizeof(pupil), 1, f);
  }
  fclose(f);
@@ -42,8 +42,8 @@ int main()
   fread(&a, sizeof(pupil), 1, f);
   cout << "Ученик, номер " << n    << endl
        << "Фамилия: " << a.surname << endl
-       << "Вес: "     << a.grade   << endl
-       << "Рост: "    << a.weight  << endl;
+       << "Вес: "     << a.weight  << endl
+       << "Рост: "    << a.growth  << endl;
  }
  fclose(f);
  return 0;
