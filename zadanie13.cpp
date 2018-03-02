@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<iostream>
 #include<string.h>
-#include<windows.h>
 using namespace std;
 
 int i,n = 0;
@@ -10,18 +9,18 @@ char namefile[15];
 const int lim = 10;
 struct pupil
 {
- char magazine[30];
- char tovar[30];
+ char magazine[15];
+ char tovar[15];
  float cena;
 };
 
 pupil cat[lim];
 void save()
 {
- system("cls");
+ system("clear");
  FILE *f = NULL;
  int i;
- cout << "Ââåäèòå íàçâàíèå ôàéëà: ";
+ cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°: ";
  cin  >> namefile;
  f = fopen(namefile, "wb");
  for (i=0;i<n;i++)
@@ -31,78 +30,61 @@ void save()
  fclose(f);
 }
 
+void odin(int n)
+{
+ n++;
+ cout << "ÐœÐ°Ð³Ð°Ð·Ð¸Ð½,  Ð½Ð¾Ð¼ÐµÑ€ "     << n               << endl
+      << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°: " << cat[n].magazine << endl
+      << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ð¾Ð²Ð°Ñ€Ð°: "   << cat[n].tovar    << endl
+      << "Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ: "         << cat[n].cena << " Ñ€ÑƒÐ±." << endl;
+}
+
 void find()
 {
- FILE *f = NULL;
- system("cls");
- cout << "Ââåäèòå íàçâàíèå ôàéëà: ";
- cin >> namefile;
- f = fopen(namefile, "rb");
- if (f!=NULL)
- {
- fseek(f, 0, SEEK_SET);
- int z=ftell(f);
+ system("clear");
  char namemagazine[15];
- system("cls");
- cout << "Ââåäèòå íàçâàíèå ìàãàçèíà: ";
+ cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°: ";
  cin  >> namemagazine;
- for(i=0;i<(z/sizeof(pupil));i++)
+ n = 1;
+ for (i = 0; i<lim; i++)
  {
-  cout << "Äîøëî.";
+  n++;
   if (strcmp(namemagazine, cat[n].magazine)==0)
   {
-   fread(&cat[i], sizeof(pupil), 1, f);
-   cout << "Ìàãàçèí, íîìåð "     << n               << endl
-        << "Íàçâàíèå ìàãàçèíà: " << cat[n].magazine << endl
-        << "Íàçâàíèå òîâàðà: "   << cat[n].tovar    << endl
-        << "Ñòîèìîñòü: "         << cat[n].cena     << endl;
+   for (i=0;i<n;i++)
+   odin(i);
   }
   else
   {
-  printf("Ìàãàçèí íå íàéäåí");
-  fclose(f);
+   printf("ÐœÐ°Ð³Ð°Ð·Ð¸Ð½ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½");
   }
-  fclose(f);
  }
- }
- else
- {
-  cout << "Òàêîé ôàéë íå ñóùåñòâóåò!\n";
- }
+ system("pause");
 }
 
 void add()
 {
- system("cls");
+ system("clear");
  if (n==(lim-1))
- printf("Êàòàëîã çàïîëíåí\n");
+ printf("Ð—Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¾!\n");
  else
  {
   n++;
-  cout << "Ìàãàçèí, íîìåð "     << n          << endl
-       << "Ââåäèòå íàçâàíèå ìàãàçèíà: ";
+  cout << "ÐœÐ°Ð³Ð°Ð·Ð¸Ð½,  Ð½Ð¾Ð¼ÐµÑ€ "     << n          << endl
+       << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°: ";
   cin  >> cat[n].magazine;
-  cout << "Ââåäèòå íàçâàíèå òîâàðà: ";
+  cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ð¾Ð²Ð°Ñ€Ð°: ";
   cin  >> cat[n].tovar;
-  cout << "Ââåäèòå ñòîèìîñòü: ";
+  cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ: ";
   cin  >> cat[n].cena;
  }
 }
 
-void odin(int n)
-{
- n++;
- cout << "Ìàãàçèí, íîìåð "     << n               << endl
-      << "Íàçâàíèå ìàãàçèíà: " << cat[n].magazine << endl
-      << "Íàçâàíèå òîâàðà: "   << cat[n].tovar    << endl
-      << "Ñòîèìîñòü: "         << cat[n].cena << " ðóá." << endl;
-}
-
 void all()
 {
- system("cls");
+ system("clear");
  if (n==0)
- cout << "Íå äîáàâëåí íè îäèí ìàãàçèí!\n";
+ cout << "ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°!\n";
  else
  for (i=0;i<n;i++)
  odin(i);
@@ -111,22 +93,23 @@ void all()
 void loading()
 {
  FILE *f = NULL;
- cout << "Ââåäèòå íàçâàíèå ôàéëà: ";
+ system("clear");
+ cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°: ";
  cin  >> namefile;
  f = fopen(namefile, "rb");
  fseek(f, 0, SEEK_END);
  int z = ftell(f);
- cout << "Ðàçìåð: " << z << endl;
+ cout << "Ð Ð°Ð·Ð¼ÐµÑ€: " << z << endl;
  fseek(f, 0, SEEK_SET);
  int g = 1;
  n = n - 1;
  for (i=0;i<z/sizeof(pupil);i++)
  {
   fread(&cat[i], sizeof(pupil), 1, f);
-  cout << "Ìàãàçèí, íîìåð "     << g              << endl
-       << "Íàçâàíèå ìàãàçèíà: " << cat[n].magazine << endl
-       << "Íàçâàíèå òîâàðà: "   << cat[n].tovar    << endl
-       << "Ñòîèìîñòü: "         << cat[n].cena     << endl;
+  cout << "ÐœÐ°Ð³Ð°Ð·Ð¸Ð½, Ð½Ð¾Ð¼ÐµÑ€"      << g               << endl
+       << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°: " << cat[n].magazine << endl
+       << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ð¾Ð²Ð°Ñ€Ð°: "   << cat[n].tovar    << endl
+       << "Ð¦ÐµÐ½Ð°: "              << cat[n].cena     << endl;
   n++;
   g++;
  }
@@ -134,52 +117,73 @@ void loading()
  system("pause");
 }
 
+void sort()
+{
+ int counter = 0;
+ n = 0;
+ int j = 1;
+ for (int i = 1; i < n; i++)
+ {
+  for ( j = i; j > 0 && cat[n-1].magazine > cat[n].magazine ;j++ )
+  {
+   n++;
+   counter++;
+   char tmp[15] = cat[n-1].magazine;
+   cat[n-1].magazine = cat[n].magazine;
+   cat[n].magazine = tmp;
+  }
+ }
+ cout << counter << endl;
+}
+
 int menu()
 {
  int d;
- system("cls");
- printf("1 - ñîõðàíèòü â ôàéë\n");
- printf("2 - çàãðóçèòü èç ôàéëà\n");
- printf("3 - ïîèñê òîâàðà ïî íàçâàíèþ ìàãàçèíà\n");
- printf("4 - äîáàâèòü ìàãàçèí\n");
- printf("5 - ïîêàçàòü âñå ìàãàçèíû\n");
- printf("6 - âûõîä\n");
+ system("clear");
+ printf("1 - ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð² Ñ„Ð°Ð¹Ð»\n");
+ printf("2 - Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°\n");
+ printf("3 - Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÑŽ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð°\n");
+ printf("4 - Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½\n");
+ printf("5 - Ð¿Ð¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÑÐµ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ñ‹\n");
+ printf("6 - ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð¾Ð²");
+ printf("7 - Ð²Ñ‹Ñ…Ð¾Ð´\n");
+ printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð¸Ñ„Ñ€Ñƒ: ");
  scanf("%d", &d);
  return d;
 }
 
 int main()
 {
- setlocale(LC_ALL, "rus");
- setlocale(LC_ALL,"Russian");
- SetConsoleCP(1251);
- SetConsoleOutputCP(1251);
  n = 0;
  while (1)
  {
   switch(menu())
   {
-  case 1:
-         save();
-         break;
-  case 2:
-         loading();
-         system("pause");
-         break;
-  case 3:
-         find();
-         system("pause");
-         break;
-  case 4:
-         add();
-         break;
-  case 5:
-         all();
-         system("pause");
-         break;
-  case 6:
-         return 0;
- }
+   case 1:
+          save();
+          break;
+   case 2:
+          loading();
+          system("pause");
+          break;
+   case 3:
+          find();
+          //system("pause");
+          break;
+   case 4:
+          add();
+          break;
+   case 5:
+          all();
+          system("pause");
+          break;
+   case 6:
+          sort();
+          system("pause");
+          break;
+   case 7:
+          return 0;
+  }
  }
  return 0;
 }
