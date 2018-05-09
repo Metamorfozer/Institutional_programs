@@ -1,32 +1,64 @@
-#include "string.h"
-#include "iostream"
-#include "conio.h"
+#include <string.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
+
 const int n = 100;
 int main()
 {
-        int count = 0, min = 1000;
-        char res[n],  s[n], temp[n];
-        cout << "Enter string: ";
-        gets(s);
-        strcpy(temp, s);
-        for(char *p = strtok(s, " ,."); p; p = strtok(NULL, " ,."))
+        system("clear");
+        int count = 0, min = 1000; //count - счётчик слов, min - минимальная длина слова
+        char res[n],  s[n];
+        FILE *f;
+	char *estr;
+	f = fopen("1.txt", "r");
+	while (!(feof(f)))
+	{
+	 estr = fgets(s, sizeof(s), f);
+	 if (estr == NULL)
+	  if (feof(f)!=0)
+	  {
+	   break;
+	  }
+	  else
+	  {
+	   cout << "\nОшибка чтения из файла\n";
+	  }
+        for (char *p = strtok(s, " ,."); p; p = strtok(NULL, " ,."))//strtok разбиение строки на части, в первом аргументе указатель на разбиваемую строку в качестве второго аргумента принимает массив символов для разделителей
         {
-                if(strlen(p) < min)
+                if(strlen(p) < min)//Если длина слова p меньше минимальной длины, то
                 {
-                        min = strlen(p);
-                        strcpy(res,p);
-
+                        min = strlen(p);//Присвоить к переменной min длинну слова p
+                        strcpy(res,p);//Скопировать слово p в (самое короткое слово) res  
                 }
         }
-        min = 1000;
-        for(char *p = strtok(temp, " ,."); p; p = strtok(NULL, " ,."))
-        {
+	}
+	fclose(f);
+        f = fopen("1.txt", "r");
+        min = 1000;//Заново присваиваем к переменной min 1000, как в начале
+        while (!(feof(f)))
+	{
+	 estr = fgets(s, sizeof(s), f);
+	 if (estr == NULL)
+	  if (feof(f)!=0)
+	  {
+	   break;
+	  }
+	  else
+	  {
+	   cout << "\nОшибка чтения из файла\n";
+	  }
+         for (char *p = strtok(s, " ,."); p; p = strtok(NULL, " ,."))//проходимся по строке второй раз, узнать сколько рах встречается самое короткое слово
+         {
                 if(strlen(p) == strlen(res))
                 {
-                        count++;
+                        count++;//Счётчик слова
                 }
-        }
-        cout << "\nSamoe korotkoe slovo: " << res << ", vstrechaetsya " << count << " raz";
+         }
+	}
+	fclose(f);
+	count = count - 1;
+        cout << "Самое короткое слово " << res << ", встречается " << count << " раз\n";
         return 0;
 }
