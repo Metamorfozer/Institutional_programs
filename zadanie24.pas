@@ -40,7 +40,7 @@ begin
    if Pos(' ',s)>0 then 
    begin
     s1:=Copy(s,1,Pos(' ',s)-1);
-    Delete(s,1,Pos(' ', s));
+
    end
    else 
    begin
@@ -81,7 +81,7 @@ begin
    if Pos(' ',s)>0 then 
    begin
     s1:=Copy(s,1,Pos(' ',s)-1);
-    Delete(s,1,Pos(' ',s));
+
    end 
    else 
    begin
