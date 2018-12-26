@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Матрица</title>
+</head>
+
+<body>
+    <div class="input" style="margin-bottom: 10px">
+        <input id="sizeH" class="sizeInput" type="range" value="0" min="0" max="99" step="1" style="width: 100%">
+        <span style="float: left">Горизонтально: </span>
+        <div id="sizeHValue">1</div>
+        <input id="sizeV" class="sizeInput" type="range" value="0" min="0" max="99" step="1" style="width: 100%">
+        <span style="float: left">Вертикально: </span>
+        <div id="sizeVValue">1</div>
+    </div>
+    <div class="table">
+        <table id="tableValues" border="1" cellpadding="2">
+            <tbody align="center">
+                <tr>
+                    <td width="30">1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        window.onload = () => {
+            let sizeH = 0,
+                sizeV = 0;
+            let table = document.getElementById('tableValues');
+
+            document.getElementById('sizeH').addEventListener('mousemove', (event) => {
+                sizeH = parseInt(event.target.value);
+                document.getElementById('sizeHValue').innerText = sizeH + 1;
+                ChangeTable();
+            });
+
+            document.getElementById('sizeV').addEventListener('mousemove', (event) => {
+                sizeV = parseInt(event.target.value);
+                document.getElementById('sizeVValue').innerText = sizeV + 1;
+                ChangeTable();
+            });
+
+            function ChangeTable() {
+                var arr = [];
+                for (let i = table.rows.length - 1; i >= 0; i--) {
+                    table.deleteRow(i);
+                }
+                for (var i = 0; i < 50; i++) {
+                    arr[i] = [];
+                    for (var j = 0; j < 50; j++) {
+                        arr[i][j] = 0;
+                    }
+                }
+                for (let i = 0; i <= sizeH; i++) {
+                    let row = table.insertRow(i);
+                    for (let j = 0; j <= sizeV; j++) {
+                        let cell = row.insertCell(j);
+                        if (i == j) {
+                            arr[i][j] = 1;
+                        } else if (i > j) {
+                            arr[i + 1][j] = arr[i][j] + 1;
+                            arr[i][j] = arr[i][j] + 1;
+                            arr[i][j] = arr[i][j] + 1;
+                        } else if (i < j) {
+                            arr[i][j + 1] = arr[i][j] + 1;
+                            arr[i][j] = arr[i][j] + 1;
+                            arr[i][j] = arr[i][j] + 1;
+                        }
+                        cell.innerHTML = "<b>" + arr[i][j] + "</b>"
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>
