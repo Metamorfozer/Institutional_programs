@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Решение квадратного уравнения</title>
-<script>
-    window.onload = init;
+    <meta charset="UTF-8">
+    <title>Решение квадратного уравнения</title>
+    <script>
+        window.onload = init;
     function init()
     {
       var solveButton = document.getElementById("solveButton");
@@ -72,17 +73,19 @@
     }
   </script>
 </head>
+
 <body>
-  <h3>Решение квадратного уравнения вида ax<sup>2</sup>+bx+c=0.</h3>
-  <form>
-    <p><label>Коэффициент <strong>x-начальное</strong>:<input type="text" id="x-nachalnoe" value="" maxlength="8" size="5"></label></p>
-    <p><label>Коэффициент <strong>x-конечное</strong>:<input type="text" id="x-konechnoe" value="" maxlength="8" size="5"></label></p>
-    <p><label>Коэффициент <strong>dx</strong>:<input type="text" id="dx" value="" maxlength="8" size="5"></label></p>
-    <p><label>Коэффициент <strong>а</strong>:<input type="text" id="koefA" value="" maxlength="8" size="5"></label></p>
-    <p><label>Коэффициент <strong>b</strong>:<input type="text" id="koefB" value="" maxlength="8" size="5"></label></p>
-    <p><label>Коэффициент <strong>c</strong>:<input type="text" id="koefC" value="" maxlength="8" size="5"></label></p>
-    <input type="button" id="solveButton" value="Решить">
-  </form>
-  <p id="showSolve"></p>
+    <h3>Решение квадратного уравнения вида ax<sup>2</sup>+bx+c=0.</h3>
+    <form>
+        <p><label>Коэффициент <strong>x-начальное</strong>:<input type="text" id="x-nachalnoe" value="" maxlength="8" size="5"></label></p>
+        <p><label>Коэффициент <strong>x-конечное</strong>:<input type="text" id="x-konechnoe" value="" maxlength="8" size="5"></label></p>
+        <p><label>Коэффициент <strong>dx</strong>:<input type="text" id="dx" value="" maxlength="8" size="5"></label></p>
+        <p><label>Коэффициент <strong>а</strong>:<input type="text" id="koefA" value="" maxlength="8" size="5"></label></p>
+        <p><label>Коэффициент <strong>b</strong>:<input type="text" id="koefB" value="" maxlength="8" size="5"></label></p>
+        <p><label>Коэффициент <strong>c</strong>:<input type="text" id="koefC" value="" maxlength="8" size="5"></label></p>
+        <input type="button" id="solveButton" value="Решить">
+    </form>
+    <p id="showSolve"></p>
 </body>
+
 </html>
