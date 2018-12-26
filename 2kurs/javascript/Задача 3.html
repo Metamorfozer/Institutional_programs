@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Решение квадратного уравнения</title>
+<script>
+    window.onload = init;
+    function init()
+    {
+      var solveButton = document.getElementById("solveButton");
+      solveButton.onclick = solveButtonClick;
+    }
+    function solveButtonClick()
+    {
+      var xin = document.getElementById("x-nachalnoe").value;
+      var xout = document.getElementById("x-konechnoe").value;
+      var dx = document.getElementById("dx").value;
+      var a = document.getElementById("koefA").value;
+      var b = document.getElementById("koefB").value;
+      var c = document.getElementById("koefC").value;
+      var showSolve = document.getElementById("showSolve");
+      var x = parseInt(xin);
+      xin = parseInt(xin);
+      xout = parseInt(xout);
+      dx = parseInt(dx);
+      a = parseInt(a);
+      b = parseInt(b);
+      c = parseInt(c);
+      while (x<=xout)
+      {
+        
+        if((a < 0) && (x!=0))
+        {
+          var F=a*x*x+b*b*x;
+        }
+        else
+        {
+        if ((a>0)&&(x===0)&&(x-c!=0))
+        {
+          var F=x-(a/(x-c));
+        }
+        else
+        {
+          showSolve.innerHTML = "Решение невозможно!";
+          return ; 
+        }
+        }
+        var r = (parseInt(a));
+        var k = (parseInt(b));
+        var l = (parseInt(c));
+        if (~(r|k)&((k|l)!=0))
+        {
+          if (c!=0)
+          {
+            var F=1+(x/c);
+            showSolve.innerHTML = "x=<strong>" + x.toFixed(5) + "</strong> F=<strong>" + F.toFixed(5) + "</strong>";
+          }
+          else
+          {
+            showSolve.innerHTML = "Решение невозможно!";
+            return ;
+          } 
+        }
+        else
+        {
+          var g = parseInt(F);
+          console.log("x=" + x + " F=" + F);
+          showSolve.innerHTML = "x=<strong>" + x + "</strong> F=<strong>" + g + "</strong>";
+        }
+        x = x + parseInt(dx);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h3>Решение квадратного уравнения вида ax<sup>2</sup>+bx+c=0.</h3>
+  <form>
+    <p><label>Коэффициент <strong>x-начальное</strong>:<input type="text" id="x-nachalnoe" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>x-конечное</strong>:<input type="text" id="x-konechnoe" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>dx</strong>:<input type="text" id="dx" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>а</strong>:<input type="text" id="koefA" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>b</strong>:<input type="text" id="koefB" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>c</strong>:<input type="text" id="koefC" value="" maxlength="8" size="5"></label></p>
+    <input type="button" id="solveButton" value="Решить">
+  </form>
+  <p id="showSolve"></p>
+</body>
+</html>

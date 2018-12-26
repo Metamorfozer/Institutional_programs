@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Решение квадратного уравнения</title>
+<script>
+    window.onload = init;
+    function init()
+    {
+      var solveButton = document.getElementById("solveButton");
+      solveButton.onclick = solveButtonClick;
+    }
+    function solveButtonClick()
+    {
+      var a = document.getElementById("koefA").value;
+      var b = document.getElementById("koefB").value;
+      var c = document.getElementById("koefC").value;
+      var showSolve = document.getElementById("showSolve");
+      if(a === "" || b === "" || c === "")
+      {
+        showSolve.innerHTML = "Введите все коэффициенты!";
+        return ;
+      }
+      var d = b * b - 4 * a * c;
+      if(isNaN(d))
+      {
+        showSolve.innerHTML = "Введите коэффициенты правильно!";
+        return ;    
+      }
+      if(d >= 0.0)
+      {
+        var x1 = (-b + Math.sqrt(d)) / (2 * a);
+        var x2 = (-b - Math.sqrt(d)) / (2 * a);
+        showSolve.innerHTML = "Корнями уранения являются <strong>" + x1.toFixed(3) + "</strong> и <strong>" + x2.toFixed(3) + "</strong>.";
+      }
+      else
+      {
+        var x1 = -b / (2 * a);
+        var x2 = Math.sqrt(Math.abs(d)) / (2 * a);
+        showSolve.innerHTML = "Корнями уранения являются <strong>" + x1.toFixed(3) + " + i" + x2.toFixed(3) +
+                              "</strong> и <strong>" + x1.toFixed(3) + " - i" + x2.toFixed(3) + "</strong>.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h3>Решение квадратного уравнения вида ax<sup>2</sup>+bx+c=0.</h3>
+  <form>
+    <p><label>Коэффициент <strong>а</strong>:<input type="text" id="koefA" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>b</strong>:<input type="text" id="koefB" value="" maxlength="8" size="5"></label></p>
+    <p><label>Коэффициент <strong>c</strong>:<input type="text" id="koefC" value="" maxlength="8" size="5"></label></p>
+    <input type="button" id="solveButton" value="Решить">
+  </form>
+  <p id="showSolve"></p>
+</body>
+</html>

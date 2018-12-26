@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Задача № 2</title>
+<script>
+    window.onload = init;
+    var oX, oY;
+    function init()
+    {
+      var figureImage = document.getElementById("figure");
+      figureImage.onmousedown = imageClick;
+      oX = figureImage.clientWidth / 2;
+      oY = figureImage.clientHeight / 2;
+    }
+    function imageClick(event)
+    {
+      var xMouse = event.offsetX - oX;
+      var yMouse = oY - event.offsetY;
+      var x = xMouse / 15.0;
+      var y = yMouse / 15.0;
+      var oa=(((x*x+y*y)<1)&&(y>0));
+      var ob=(((x*x+y*y)<=1)&&(y<=0));
+      var p=((x>=-1)&&(x<1)&&(y>-4)&&(y<0));
+      var k=((x>=-1)&&(x<=-1)&&(y>=0)&&(y<=2));
+      var lt=((x>=-3)&&(x<=-1)&&(y>=0)&&(y<=2)&&(((x/-3)+(y/2))<=1));
+      var pt=((x>=1)&&(x<=3)&&(y>=0)&&(y<=2)&&(((x/3)+(y/2))<=1));
+      var v=v=((x>=-3)&&(x<=3)&&(y>=-9)&&(y<=0)&&(((x*x)-y-9)<=0));;
+      var showSolve = document.getElementById("showSolve");
+      if(lt || pt || (k&&!oa) || (v&&!p) || ob)
+        showSolve.innerHTML = "Принадлежит.";
+      else
+        showSolve.innerHTML = "Не принадлежит."
+    }
+  </script>
+</head>
+<body>
+  <div align="center">
+    <h3>Нажимайте кнопку "мыши" над рисунком.</h3>
+    <img id="figure" width="300" height="300" src="фигура.png">
+    <p id="showSolve"></p>
+  </div>
+</body>
+</html>
