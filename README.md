@@ -1,2 +1,1 @@
-# Institutional_programs
-Программы на С++ и Pascal
+# Программы на С++, C# и Pascal
